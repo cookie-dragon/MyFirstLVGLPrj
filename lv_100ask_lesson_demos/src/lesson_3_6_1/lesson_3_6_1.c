@@ -1,14 +1,14 @@
 /**
  ******************************************************************************
- * @file    lesson_2_9_1.c
+ * @file    lesson_3_6_1.c
  * @author  百问科技
  * @version V1.0
- * @date    2024-4-25
- * @brief	Lesson 2-9-1 demo
+ * @date    2024-5-28
+ * @brief	Lesson 3-6-1 demo
  ******************************************************************************
  * Change Logs:
  * Date           Author          Notes
- * 2024-5-10     zhouyuebiao     First version
+ * 2024-5-28     zhouyuebiao     First version
  ******************************************************************************
  * @attention
  *
@@ -41,10 +41,9 @@
  *********************/
 #include "../../lv_100ask_lesson_demos.h"
 
-#if LV_USE_LESSON_DEMO_2_9_1
+#if LV_USE_LESSON_DEMO_3_6_1
 
-#include "lesson_2_9_1.h"
-
+#include "lesson_3_6_1.h"
 
 /*********************
  *      DEFINES
@@ -57,9 +56,6 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static void my_timer1(lv_timer_t * timer);
-static void my_timer2(lv_timer_t * timer);
-static void my_timer3(lv_timer_t * timer);
 
 /**********************
  *  STATIC VARIABLES
@@ -72,67 +68,55 @@ static void my_timer3(lv_timer_t * timer);
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
-void lesson_2_9_1(void)
+void lesson_3_6_1(void)
 {
-    static int user_data = 100;
 
-    lv_timer_t * timer1;
-    lv_timer_t * timer2;
-    lv_timer_t * timer3;
+#if 1 // 3-6-1
+    lv_obj_t * spinner = lv_spinner_create(lv_screen_active());
+    lv_obj_set_size(spinner, 300, 300);
+    lv_obj_center(spinner);
+    lv_spinner_set_anim_params(spinner, 1000, 360);
+#else if 0 // 3-6-2
+#if 0 // case 1
+    lv_obj_t * spinner = lv_spinner_create(lv_screen_active());
+    lv_obj_set_size(spinner, 200, 200);
+    lv_obj_center(spinner);
+    lv_spinner_set_anim_params(spinner, 1000, 270);
 
-#if 1
-    /* 创建第一个timer */
-    timer1 = lv_timer_create(my_timer1, 100, &user_data);
-    //lv_timer_set_cb(timer1, my_timer1);
-    //lv_timer_set_period(timer1, 10);
-
-    // 设置此timer的运行次数，设置后该timer在执行指定次数后会自动删除
-    // 设置为 -1 就是无限重复，默认值就是 -1
-    //lv_timer_set_repeat_count(timer1, 3);
-
-    // 让此timer在下一次调用 lv_timer_handler() 时运行
-    // 也就是会马上运行，而不是等过了给定的第一个周期过了之后才运行。
-    // 与它相反的是：lv_timer_reset(timer) 其会重置定时器的周期，
-    // 这样定时器将在我们设置的毫秒时间段过去后再调用。
-    //lv_timer_ready(timer1);
-    //lv_timer_reset(timer1);
+    lv_obj_set_style_arc_rounded(spinner, 0, LV_PART_INDICATOR);
+    lv_obj_set_style_arc_opa(spinner, LV_OPA_TRANSP, LV_PART_MAIN);
+    lv_obj_set_style_arc_color(spinner, lv_palette_main(LV_PALETTE_GREEN), LV_PART_INDICATOR);
+    lv_obj_set_style_arc_width(spinner, 40, LV_PART_INDICATOR);
 #endif
 
-#if 0
-    timer2 = lv_timer_create(my_timer2, 100, timer1);
-    lv_timer_set_repeat_count(timer2, 1);
+#if 0 // case 2、3
+    lv_obj_t * spinner = lv_spinner_create(lv_screen_active());
+    lv_obj_set_size(spinner, 200, 200);
+    lv_obj_center(spinner);
+    lv_spinner_set_anim_params(spinner, 1000, 180);
 
-    timer3 = lv_timer_create_basic(); // timer3 = lv_timer_create(NULL, 500, NULL);
-    lv_timer_set_cb(timer3, my_timer3);
+    // case 2
+    lv_obj_set_style_pad_all(spinner, 14, LV_PART_INDICATOR);
+
+    // case 3
+    //lv_obj_set_style_pad_all(spinner, 14, LV_PART_INDICATOR);
+    //lv_obj_set_style_pad_all(spinner, 24, LV_PART_MAIN);
+    //lv_obj_set_style_pad_all(spinner, -14, LV_PART_INDICATOR);
+
+    lv_obj_set_style_arc_rounded(spinner, 0, LV_PART_INDICATOR);
+    //lv_obj_set_style_arc_opa(spinner, LV_OPA_TRANSP, LV_PART_MAIN);
+    lv_obj_set_style_arc_color(spinner, lv_palette_main(LV_PALETTE_GREEN), LV_PART_INDICATOR);
+    //lv_obj_set_style_arc_width(spinner, 40, LV_PART_INDICATOR);
 #endif
+
+#endif
+
+
 }
 
 /**********************
  *   STATIC FUNCTIONS
  **********************/
 
-static void my_timer1(lv_timer_t * timer)
-{
-    int *user_data = lv_timer_get_user_data(timer);
-    
-    uint32_t idle = lv_timer_get_idle();
-    LV_LOG_USER("my_timer1 user_data: %d, idle: %d", *user_data, idle);
-}
 
-
-static void my_timer2(lv_timer_t * timer)
-{
-    static int i = 0;
-    //lv_timer_t * timer1 = lv_timer_get_user_data(timer);
-    //LV_LOG_USER("my_timer2");
-
-    usleep(1000 * i++);
-}
-
-static void my_timer3(lv_timer_t * timer)
-{
-    LV_LOG_USER("my_timer3");
-}
-
-#endif /* LV_USE_LESSON_DEMO_2_9_1 */
+#endif /* LV_USE_LESSON_DEMO_3_6_1 */

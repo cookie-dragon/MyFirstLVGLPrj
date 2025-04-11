@@ -1,20 +1,20 @@
 /**
  ******************************************************************************
- * @file    lesson_2_9_1.c
+ * @file    lesson_3_31_1.c
  * @author  百问科技
  * @version V1.0
- * @date    2024-4-25
- * @brief	Lesson 2-9-1 demo
+ * @date    2024-9-18
+ * @brief	Lesson 3_31_1 demo
  ******************************************************************************
  * Change Logs:
  * Date           Author          Notes
- * 2024-5-10     zhouyuebiao     First version
+ * 2024-9-18     zhouyuebiao     First version
  ******************************************************************************
  * @attention
  *
  * Copyright (C) 2008-2024 深圳百问网科技有限公司<https://www.100ask.net/>
  * All rights reserved
- * 
+ *
  * 代码配套的视频教程：
  *      B站：   https://www.bilibili.com/video/BV1WE421K75k
  *      百问网：https://fnwcn.xetslk.com/s/39njGj
@@ -23,9 +23,10 @@
  * 本程序遵循MIT协议, 请遵循协议！
  * 免责声明: 百问网编写的文档, 仅供学员学习使用, 可以转发或引用(请保留作者信息),禁止用于商业用途！
  * 免责声明: 百问网编写的程序, 仅供学习参考，假如被用于商业用途, 但百问网不承担任何后果！
- * 
+ *
  * 百问网学习平台   : https://www.100ask.net
  * 百问网交流社区   : https://forums.100ask.net
+ * 百问网LVGL文档   : https://lvgl.100ask.net
  * 百问网官方B站    : https://space.bilibili.com/275908810
  * 百问网官方淘宝   : https://100ask.taobao.com
  * 百问网微信公众号 ：百问科技 或 baiwenkeji
@@ -35,16 +36,14 @@
  ******************************************************************************
  */
 
-
 /*********************
  *      INCLUDES
  *********************/
 #include "../../lv_100ask_lesson_demos.h"
 
-#if LV_USE_LESSON_DEMO_2_9_1
+#if LV_USE_LESSON_DEMO_3_31_1
 
-#include "lesson_2_9_1.h"
-
+#include "lesson_3_31_1.h"
 
 /*********************
  *      DEFINES
@@ -57,9 +56,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static void my_timer1(lv_timer_t * timer);
-static void my_timer2(lv_timer_t * timer);
-static void my_timer3(lv_timer_t * timer);
+static void event_handler_3_31_1(lv_event_t * e);
 
 /**********************
  *  STATIC VARIABLES
@@ -72,67 +69,56 @@ static void my_timer3(lv_timer_t * timer);
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
-void lesson_2_9_1(void)
+void lesson_3_31_1(void)
 {
-    static int user_data = 100;
+#if 1 // 3_31_1
+    lv_obj_t * win = lv_win_create(lv_screen_active());
 
-    lv_timer_t * timer1;
-    lv_timer_t * timer2;
-    lv_timer_t * timer3;
+    lv_obj_t * btn;
+    btn = lv_win_add_button(win, LV_SYMBOL_LEFT, 40);
+    lv_obj_add_event_cb(btn, event_handler_3_31_1, LV_EVENT_CLICKED, NULL);
 
-#if 1
-    /* 创建第一个timer */
-    timer1 = lv_timer_create(my_timer1, 100, &user_data);
-    //lv_timer_set_cb(timer1, my_timer1);
-    //lv_timer_set_period(timer1, 10);
+    lv_win_add_title(win, "A title");
 
-    // 设置此timer的运行次数，设置后该timer在执行指定次数后会自动删除
-    // 设置为 -1 就是无限重复，默认值就是 -1
-    //lv_timer_set_repeat_count(timer1, 3);
+    btn = lv_win_add_button(win, LV_SYMBOL_RIGHT, 40);
+    lv_obj_add_event_cb(btn, event_handler_3_31_1, LV_EVENT_CLICKED, NULL);
 
-    // 让此timer在下一次调用 lv_timer_handler() 时运行
-    // 也就是会马上运行，而不是等过了给定的第一个周期过了之后才运行。
-    // 与它相反的是：lv_timer_reset(timer) 其会重置定时器的周期，
-    // 这样定时器将在我们设置的毫秒时间段过去后再调用。
-    //lv_timer_ready(timer1);
-    //lv_timer_reset(timer1);
+    btn = lv_win_add_button(win, LV_SYMBOL_CLOSE, 60);
+    lv_obj_add_event_cb(btn, event_handler_3_31_1, LV_EVENT_CLICKED, NULL);
+
+    lv_obj_t * cont = lv_win_get_content(win);  /*Content can be added here*/
+    lv_obj_t * label = lv_label_create(cont);
+    lv_label_set_text(label, "This is\n"
+                             "a pretty\n"
+                             "long text\n"
+                             "to see how\n"
+                             "the window\n"
+                             "becomes\n"
+                             "scrollable.\n"
+                             "\n"
+                             "\n"
+                             "Some more\n"
+                             "text to be\n"
+                             "sure it\n"
+                             "overflows. :)");
+    btn = lv_btn_create(cont);
+
+    // 隐藏标头，有没有必要？
+    //cont = lv_win_get_header(win);
+    //lv_obj_add_flag(cont, LV_OBJ_FLAG_HIDDEN);
 #endif
 
-#if 0
-    timer2 = lv_timer_create(my_timer2, 100, timer1);
-    lv_timer_set_repeat_count(timer2, 1);
-
-    timer3 = lv_timer_create_basic(); // timer3 = lv_timer_create(NULL, 500, NULL);
-    lv_timer_set_cb(timer3, my_timer3);
-#endif
 }
 
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-
-static void my_timer1(lv_timer_t * timer)
+static void event_handler_3_31_1(lv_event_t * e)
 {
-    int *user_data = lv_timer_get_user_data(timer);
-    
-    uint32_t idle = lv_timer_get_idle();
-    LV_LOG_USER("my_timer1 user_data: %d, idle: %d", *user_data, idle);
+    lv_obj_t * obj = lv_event_get_target(e);
+    LV_UNUSED(obj);
+    LV_LOG_USER("Button %d clicked", (int)lv_obj_get_index(obj));
 }
 
 
-static void my_timer2(lv_timer_t * timer)
-{
-    static int i = 0;
-    //lv_timer_t * timer1 = lv_timer_get_user_data(timer);
-    //LV_LOG_USER("my_timer2");
-
-    usleep(1000 * i++);
-}
-
-static void my_timer3(lv_timer_t * timer)
-{
-    LV_LOG_USER("my_timer3");
-}
-
-#endif /* LV_USE_LESSON_DEMO_2_9_1 */
+#endif /* LV_USE_LESSON_DEMO_3_31_1 */

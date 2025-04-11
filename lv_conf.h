@@ -93,7 +93,12 @@
  * - LV_OS_WINDOWS
  * - LV_OS_MQX
  * - LV_OS_CUSTOM */
+// FIXME: Append by Cooky.Long
+#if SYSUNIX
 #define LV_USE_OS   LV_OS_NONE
+#elif SYSWIN32
+#define LV_USE_OS   LV_OS_WINDOWS
+#endif
 
 #if LV_USE_OS == LV_OS_CUSTOM
     #define LV_OS_CUSTOM_INCLUDE <stdint.h>
@@ -131,10 +136,15 @@
 /*The target buffer size for simple layer chunks.*/
 #define LV_DRAW_LAYER_SIMPLE_BUF_SIZE    (24 * 1024)   /*[bytes]*/
 
+// FIXME: Append by Cooky.Long
 /* The stack size of the drawing thread.
  * NOTE: If FreeType or ThorVG is enabled, it is recommended to set it to 32KB or more.
  */
+#if SYSUNIX
 #define LV_DRAW_THREAD_STACK_SIZE    (8 * 1024)   /*[bytes]*/
+#elif SYSWIN32
+#define LV_DRAW_THREAD_STACK_SIZE    (32 * 1024)   /*[bytes]*/
+#endif
 
 #define LV_USE_DRAW_SW 1
 #if LV_USE_DRAW_SW == 1
@@ -1101,8 +1111,13 @@
 /*Driver for Renesas GLCD*/
 #define LV_USE_RENESAS_GLCDC    0
 
+// FIXME: Append by Cooky.Long
 /* LVGL Windows backend */
+#if SYSUNIX
 #define LV_USE_WINDOWS    0
+#elif SYSWIN32
+#define LV_USE_WINDOWS    1
+#endif
 
 /* Use OpenGL to open window on PC and handle mouse and keyboard */
 #define LV_USE_OPENGLES   0
