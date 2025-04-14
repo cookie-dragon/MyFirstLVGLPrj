@@ -28,6 +28,7 @@ endif()
 set(CMAKE_C_STANDARD 99) # C99 # lvgl officially support C99 and above
 set(CMAKE_CXX_STANDARD 17) # C17
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+cmake_policy(SET CMP0167 NEW)
 
 if(UNIX)
     # Set the output path for the executable
@@ -48,6 +49,10 @@ if(WIN32)
     find_package(SDL2 REQUIRED)
     add_definitions(-DLIBSDL=1)
 endif()
+
+# 查找 Boost 库，添加组件
+find_package(Boost REQUIRED COMPONENTS filesystem system thread)
+include_directories(${Boost_INCLUDE_DIRS})
 
 if(WIN32)
     # Remove ARM-specific compile and linker options
@@ -125,6 +130,9 @@ endif()
 
 # Custom target to run the executable
 add_custom_target(run COMMAND ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME} DEPENDS ${PROJECT_NAME})
+
+# 链接 Boost 库
+target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
 
 target_link_libraries(${PROJECT_NAME} cklhmibsp)
 target_link_libraries(${PROJECT_NAME} ckldemos)

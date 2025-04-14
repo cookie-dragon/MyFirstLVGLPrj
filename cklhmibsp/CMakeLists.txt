@@ -5,6 +5,7 @@ project(cklhmibsp VERSION 0.1.0 LANGUAGES C CXX)
 set(CMAKE_C_STANDARD 99) # C99 # lvgl officially support C99 and above
 set(CMAKE_CXX_STANDARD 17) # C17
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+cmake_policy(SET CMP0167 NEW)
 
 # Set the output path for the library
 if(UNIX)
@@ -15,12 +16,15 @@ elseif(WIN32)
     set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../output)
 endif()
 
-# find_package(Boost COMPONENTS system REQUIRED)
-# include_directories(${Boost_INCLUDE_DIRS})
+# 查找 Boost 库，添加组件
+find_package(Boost REQUIRED COMPONENTS filesystem system thread)
+include_directories(${Boost_INCLUDE_DIRS})
+
 FILE(GLOB_RECURSE PRJ_SRC CONFIGURE_DEPENDS "./src/*.cpp")
 FILE(GLOB_RECURSE PRJ_INC CONFIGURE_DEPENDS "./include/*.h")
 
 add_library(${PROJECT_NAME} SHARED ${PRJ_SRC} ${PRJ_INC})
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
-# target_link_libraries(${PROJECT_NAME} PRIVATE ${Boost_LIBRARIES})
+# 链接 Boost 库
+target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})

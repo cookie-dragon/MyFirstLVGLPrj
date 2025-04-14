@@ -13,6 +13,9 @@
 
 #ifdef __cplusplus
 #include <iostream>
+
+#include <boost/thread.hpp>
+
 // 定义 CklHmiBsp 类
 class CklHmiBsp
 {
@@ -21,6 +24,7 @@ public:
     ~CklHmiBsp();
 
     void echo();
+    void hello();
 };
 #endif
 
