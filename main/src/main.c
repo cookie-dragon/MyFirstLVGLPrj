@@ -15,7 +15,7 @@
 #include "lvgl/demos/lv_demos.h"
 #else
 #include "cklhmibsp/include/cklhmibsp.h"
-#include "ckldemos/include/ckl_mainwindow.h"
+#include "ckldemos/include/fullscreenform/mainwindow/cklmainwindow.h"
 #include "cklguiguider/generated/gui_guider.h"
 #include "cklguiguider/generated/events_init.h"
 #include "cklguiguider/custom/custom.h"
@@ -156,7 +156,7 @@ int main(int argc, char **argv)
      * @date 2025-04-11
      */
 #if 1
-    ckl_mainwindow();
+    createMainWindow();
 #endif
 
     /**
@@ -184,9 +184,9 @@ int main(int argc, char **argv)
 #if SYSWIN32
     /**
      * @brief lv_100ask_lesson_demos
-     * 
+     *
      * 100ask不完全适配linux环境
-     * 
+     *
      * @author My Name (me@domain.com)
      * @date 2025-04-11
      */

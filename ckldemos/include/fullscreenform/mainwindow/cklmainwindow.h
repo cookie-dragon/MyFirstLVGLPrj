@@ -13,14 +13,25 @@
 
 #ifdef __cplusplus
 
-#include "lvgl.h"
+#include "lvgl/lvgl.h"
 #include "cklhmibsp/include/cklhmibsp.h"
+
+namespace Ui
+{
+    class CklMainWindow;
+}
 
 class CklMainWindow
 {
 public:
-    CklMainWindow();
+    CklMainWindow(lv_obj_t *parent = 0);
     ~CklMainWindow();
+
+private:
+    Ui::CklMainWindow *ui;
+
+private:
+    static void on_btn_clicked(lv_event_t *e);
 };
 
 #endif
@@ -31,8 +42,8 @@ extern "C"
 {
 #endif
 
-    static void btn_event_cb(lv_event_t *e);
-    void ckl_mainwindow(void);
+    void *createMainWindow();
+    void destroyMainWindow(void *obj);
 
 #ifdef __cplusplus
 }

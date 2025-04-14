@@ -1,7 +1,19 @@
-#include "ckl_mainwindow.h"
+#include "fullscreenform/mainwindow/cklmainwindow.h"
+#include "fullscreenform/mainwindow/ui_cklmainwindow.h"
 
-// 按钮点击的回调函数
-static void btn_event_cb(lv_event_t *e)
+CklMainWindow::CklMainWindow(lv_obj_t *parent) : ui(new Ui::CklMainWindow)
+{
+    ui->setupUi(this);
+    // btn的回调函数
+    lv_obj_add_event_cb(ui->btn, on_btn_clicked, LV_EVENT_ALL, NULL);
+}
+
+CklMainWindow::~CklMainWindow()
+{
+    delete ui;
+}
+
+void CklMainWindow::on_btn_clicked(lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
     lv_obj_t *btn = (lv_obj_t *)lv_event_get_target(e);
@@ -23,23 +35,12 @@ static void btn_event_cb(lv_event_t *e)
     }
 }
 
-void ckl_mainwindow(void)
+void *createMainWindow()
 {
-    /* 创建一个按钮 */
-    lv_obj_t *btn = lv_btn_create(lv_scr_act());
-    lv_obj_add_event_cb(btn, btn_event_cb, LV_EVENT_ALL, NULL);
-    lv_obj_center(btn);
-
-    /* 在按钮上创建一个标签 */
-    lv_obj_t *label = lv_label_create(btn);
-    lv_label_set_text(label, "Button");
-    lv_obj_center(label);
+    return new CklMainWindow();
 }
 
-CklMainWindow::CklMainWindow()
+void destroyMainWindow(void *obj)
 {
-}
-
-CklMainWindow::~CklMainWindow()
-{
+    delete static_cast<CklMainWindow *>(obj);
 }
