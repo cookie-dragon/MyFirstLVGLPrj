@@ -21,7 +21,12 @@
 #include "cklguiguider/custom/custom.h"
 lv_ui guider_ui;
 #include "cklsquarelinestudio/ui.h"
+
+#if SYSWIN32
+// 100ask不完全适配linux环境
 #include "lv_100ask_lesson_demos/lv_100ask_lesson_demos.h"
+#endif
+
 #endif
 
 #if SYSUNIX
@@ -176,9 +181,12 @@ int main(int argc, char **argv)
     ui_init();
 #endif
 
+#if SYSWIN32
     /**
      * @brief lv_100ask_lesson_demos
-     *
+     * 
+     * 100ask不完全适配linux环境
+     * 
      * @author My Name (me@domain.com)
      * @date 2025-04-11
      */
@@ -258,6 +266,7 @@ int main(int argc, char **argv)
     // lesson_10_2(); // 如何阅读Changelog
     // lesson_10_3(); // 如何阅读Roadmap
     // lesson_10_4(); // 如何参与LVGL开发-为LVGL库做贡献
+#endif
 #endif
 
 #endif

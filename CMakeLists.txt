@@ -28,7 +28,9 @@ endif()
 set(CMAKE_C_STANDARD 99) # C99 # lvgl officially support C99 and above
 set(CMAKE_CXX_STANDARD 17) # C17
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+if(WIN32)
 cmake_policy(SET CMP0167 NEW)
+endif()
 
 if(UNIX)
     # Set the output path for the executable
@@ -96,10 +98,11 @@ add_subdirectory(cklsquarelinestudio)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/cklsquarelinestudio)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/cklsquarelinestudio/components)
 
-# Add 100ask_lesson_demos subdirectory
-add_subdirectory(lv_100ask_lesson_demos)
-# include_directories(${CMAKE_CURRENT_SOURCE_DIR}/lv_100ask_lesson_demos)
-# include_directories(${CMAKE_CURRENT_SOURCE_DIR}/lv_100ask_lesson_demos/src/lesson_2_3_1)
+# 100ask不完全适配linux环境
+if(WIN32)
+    # Add 100ask_lesson_demos subdirectory
+    add_subdirectory(lv_100ask_lesson_demos)
+endif()
 
 FILE(GLOB_RECURSE PRJ_SRC CONFIGURE_DEPENDS
     ${PROJECT_SOURCE_DIR}/main/src/mouse_cursor_icon.c
@@ -138,7 +141,11 @@ target_link_libraries(${PROJECT_NAME} cklhmibsp)
 target_link_libraries(${PROJECT_NAME} ckldemos)
 target_link_libraries(${PROJECT_NAME} cklguiguider)
 target_link_libraries(${PROJECT_NAME} cklsquarelinestudio)
-target_link_libraries(${PROJECT_NAME} lv_100ask_lesson_demos)
+
+# 100ask不完全适配linux环境
+if(WIN32)
+    target_link_libraries(${PROJECT_NAME} lv_100ask_lesson_demos)
+endif()
 
 if(WIN32)
     # Conditionally include and link SDL2_image if LV_USE_DRAW_SDL is enabled
