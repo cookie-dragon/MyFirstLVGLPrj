@@ -4,7 +4,7 @@
 static void btn_event_cb(lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
-    lv_obj_t *btn = lv_event_get_target(e);
+    lv_obj_t *btn = (lv_obj_t *)lv_event_get_target(e);
     if (code == LV_EVENT_CLICKED)
     {
         // 创建 CklHmiBsp 对象
@@ -34,4 +34,12 @@ void ckl_mainwindow(void)
     lv_obj_t *label = lv_label_create(btn);
     lv_label_set_text(label, "Button");
     lv_obj_center(label);
+}
+
+CklMainWindow::CklMainWindow()
+{
+}
+
+CklMainWindow::~CklMainWindow()
+{
 }

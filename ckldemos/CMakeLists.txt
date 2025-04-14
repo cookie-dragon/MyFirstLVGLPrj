@@ -36,7 +36,7 @@ include_directories(${Boost_INCLUDE_DIRS})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/cklhmibsp/include)
 
-FILE(GLOB_RECURSE PRJ_SRC CONFIGURE_DEPENDS "./src/*.c")
+FILE(GLOB_RECURSE PRJ_SRC CONFIGURE_DEPENDS "./src/*.c" "./src/*.cpp")
 FILE(GLOB_RECURSE PRJ_INC CONFIGURE_DEPENDS "./include/*.h")
 
 add_library(${PROJECT_NAME} STATIC ${PRJ_SRC} ${PRJ_INC})

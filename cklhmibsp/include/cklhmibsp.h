@@ -12,8 +12,8 @@
 #define CKLHMIBSP_H
 
 #ifdef __cplusplus
-#include <iostream>
 
+#include <iostream>
 #include <boost/thread.hpp>
 
 // 定义 CklHmiBsp 类
@@ -26,6 +26,7 @@ public:
     void echo();
     void hello();
 };
+
 #endif
 
 // 封装 C++ 类的功能为 C 语言可调用的函数
