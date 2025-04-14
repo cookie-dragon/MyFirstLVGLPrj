@@ -558,6 +558,12 @@ git clone --branch v9.2.1 --depth 1 https://github.com/littlevgl/lvgl.git
 - 移植lv_conf.h
 - 创建main/src/main.c和main/src/mouse_cursor_icon.c
 
+仓库代码使用
+- 进入lvgl文件夹，执行打补丁操作
+```bash
+patch -p1 < ../patch4lvgl/xxx.patch
+```
+
 ### 3	交叉编译后再树莓派上运行
 
 ```bash
