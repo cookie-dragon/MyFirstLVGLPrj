@@ -18,6 +18,8 @@ extern "C"
 
 #include "lvgl.h"
 
+#include "cklhmibsp/include/cklhmibsp.h"
+
 void ckl_mainwindow(void);
 
 #ifdef __cplusplus

@@ -10,7 +10,7 @@
 #include <SDL.h>
 #endif
 
-#define USE_DEMO 1
+#define USE_DEMO 0
 #if USE_DEMO
 #include "lvgl/demos/lv_demos.h"
 #else
@@ -155,7 +155,7 @@ int main(int argc, char **argv)
      * @author My Name (me@domain.com)
      * @date 2025-04-11
      */
-#if 0
+#if 1
     ckl_mainwindow();
 #endif
 
