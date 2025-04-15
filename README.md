@@ -580,3 +580,54 @@ cmake -DCMAKE_C_COMPILER=/root/buildroot-2025.02/output/host/bin/aarch64-linux-g
       ..
 make -j
 ```
+
+## 六、	LVGL开发随笔
+
+### 1	字体
+
+- [FreeType support（FreeType 支持）](https://lvgl.100ask.net/9.2/libs/freetype.html)
+- [Tiny TTF font engine（微小的TTF字体引擎）](https://lvgl.100ask.net/9.2/libs/tiny_ttf.html)
+
+### 2	i18n
+
+- [lv_i18n - Internationalization for LittlevGL](https://github.com/lvgl/lv_i18n)
+
+### 3   主题
+
+- [Subject（主题）](https://lvgl.100ask.net/9.2/others/observer.html#subject)
+
+### 4	日志
+
+- [Logging（日志）](https://lvgl.100ask.net/9.2/porting/log.html)
+
+### 5	文件系统
+
+- [File System Interfaces（文件系统接口）](https://lvgl.100ask.net/9.2/libs/fs.html)
+
+### 6	图片（BMP/JPG/PNG）
+
+- [BMP decoder（BMP解码器）](https://lvgl.100ask.net/9.2/libs/bmp.html)
+- [libjpeg-turbo decoder（libjpeg-turbo 解码器）](https://lvgl.100ask.net/9.2/libs/libjpeg_turbo.html)
+- [libpng decoder（libpng解码器）](https://lvgl.100ask.net/9.2/libs/libpng.html)
+
+### 7	二维码/条形码
+
+- [QR code（二维码）](https://lvgl.100ask.net/9.2/libs/qrcode.html)
+- [Barcode（条形码）](https://lvgl.100ask.net/9.2/libs/barcode.html)
+
+### 8	截图
+
+- [Snapshot（快照）](https://lvgl.100ask.net/9.2/others/snapshot.html)
+
+### 9	拼音输入法
+
+- [Pinyin IME（拼音输入法）](https://lvgl.100ask.net/9.2/others/ime_pinyin.html)
+
+## 七、	其它库
+
+### 1	PDF
+
+### 2	VNC
+
+### 3	加密
+

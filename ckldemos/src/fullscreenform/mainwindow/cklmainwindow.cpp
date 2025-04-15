@@ -1,19 +1,23 @@
 #include "fullscreenform/mainwindow/cklmainwindow.h"
 #include "fullscreenform/mainwindow/ui_cklmainwindow.h"
+#include "fullscreenform/mainwindow/model_cklmainwindow.h"
 
-CklMainWindow::CklMainWindow(lv_obj_t *parent) : ui(new Ui::CklMainWindow)
+CklMainWindow::CklMainWindow(ViewModel_Ckl *parent, lv_obj_t *p_lv_parent) : CklActivity(parent), model(new Model::CklMainWindow(this)), ui(new Ui::CklMainWindow(this, p_lv_parent))
 {
-    ui->setupUi(this);
+    model->setupModel();
+    ui->setupUi();
+
     // btn的回调函数
     lv_obj_add_event_cb(ui->btn, cb_btn_clicked, LV_EVENT_ALL, NULL);
     // 连接信号和槽
     lv_obj_t *label = ui->label;
     sig_btn_click.connect([this, label]()
-                                  { on_btn_clicked(label); });
+                          { on_btn_clicked(label); });
 }
 
 CklMainWindow::~CklMainWindow()
 {
+    delete model;
     delete ui;
 }
 

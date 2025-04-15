@@ -16,6 +16,9 @@
 #include "lvgl/lvgl.h"
 #include <boost/signals2.hpp>
 
+#include "cklgui/cklactivity.h"
+#include "cklgui/cklmodel.h"
+
 #include "cklhmibsp/include/cklhmibsp.h"
 
 // 定义信号类型
@@ -29,13 +32,19 @@ namespace Ui
     class CklMainWindow;
 }
 
-class CklMainWindow
+namespace Model
+{
+    class CklMainWindow;
+}
+
+class CklMainWindow : public CklActivity
 {
 public:
-    CklMainWindow(lv_obj_t *parent = 0);
+    CklMainWindow(ViewModel_Ckl *parent = nullptr, lv_obj_t *p_lv_parent = nullptr);
     ~CklMainWindow();
 
 private:
+    Model::CklMainWindow *model;
     Ui::CklMainWindow *ui;
 
 private:
