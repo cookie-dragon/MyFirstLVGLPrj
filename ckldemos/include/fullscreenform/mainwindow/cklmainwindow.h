@@ -14,7 +14,15 @@
 #ifdef __cplusplus
 
 #include "lvgl/lvgl.h"
+#include <boost/signals2.hpp>
+
 #include "cklhmibsp/include/cklhmibsp.h"
+
+// 定义信号类型
+typedef boost::signals2::signal<void()> BtnClickSignal;
+
+// 全局信号对象
+BtnClickSignal sig_btn_click;
 
 namespace Ui
 {
@@ -31,7 +39,10 @@ private:
     Ui::CklMainWindow *ui;
 
 private:
-    static void on_btn_clicked(lv_event_t *e);
+    static void cb_btn_clicked(lv_event_t *e);
+
+private:
+    void on_btn_clicked(lv_obj_t *label);
 };
 
 #endif
