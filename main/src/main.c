@@ -15,7 +15,7 @@
 #include "lvgl/demos/lv_demos.h"
 #else
 #include "cklhmibsp/include/cklhmibsp.h"
-#include "ckldemos/include/fullscreenform/mainwindow/cklmainwindow.h"
+#include "ckldemos/include/activity/mainwindow/mainwindow.h"
 #include "cklguiguider/generated/gui_guider.h"
 #include "cklguiguider/generated/events_init.h"
 #include "cklguiguider/custom/custom.h"

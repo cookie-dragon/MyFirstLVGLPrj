@@ -1,3 +1,12 @@
+/**
+ * @file model_ckl.h
+ * @author My Name (me@domain.com)
+ * @brief Model base class in MVVM pattern for LVGL GUI
+ * @date 2025-04-16
+ *
+ * @copyright Copyright (c) My Company 2025
+ *
+ */
 #ifndef MODEL_CKL_H
 #define MODEL_CKL_H
 
