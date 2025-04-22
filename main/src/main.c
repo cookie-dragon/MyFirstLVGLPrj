@@ -16,6 +16,7 @@
 #else
 #include "cklhmibsp/include/cklhmibsp.h"
 #include "cklhmiutils/include/ckltscal.h"
+#include "cklhmiutils/include/cklotp.h"
 #include "ckldemos/include/activity/mainwindow/mainwindow.h"
 #include "cklguiguider/generated/gui_guider.h"
 #include "cklguiguider/generated/events_init.h"
@@ -199,6 +200,10 @@ int main(int argc, char **argv)
     // Point p2 = convertToDeviceParams(&cal, p1);
     Point p2 = convertToDisplayPoints(&cal, p1);
 
+#endif
+
+#if 0
+    uint32_t totp = get_totp_demo();
 #endif
 
     /**

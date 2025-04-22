@@ -29,7 +29,6 @@ typedef struct
     double y;
 } Point;
 
-// 封装 C++ 类的功能为 C 语言可调用的函数
 #ifdef __cplusplus
 extern "C"
 {

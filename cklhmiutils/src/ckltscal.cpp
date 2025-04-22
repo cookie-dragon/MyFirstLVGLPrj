@@ -3,6 +3,7 @@
 #include <math.h>
 
 /* Powered by tslib 1.23 */
+/* https://raw.githubusercontent.com/libts/tslib/refs/tags/1.23/tests/ts_calibrate_common.c */
 int perform_calibration(calibration *cal)
 {
     int j;
@@ -81,6 +82,7 @@ int perform_calibration(calibration *cal)
 }
 
 /* Powered by tslib 1.23 */
+/* https://raw.githubusercontent.com/libts/tslib/refs/tags/1.23/tests/ts_calibrate.c */
 void write_calibration(calibration *cal, uint32_t xres_orig, uint32_t yres_orig, int8_t rotation)
 {
     char cal_buffer[256];

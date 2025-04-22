@@ -5,8 +5,9 @@ project(cklhmiutils VERSION 0.1.0 LANGUAGES C CXX)
 set(CMAKE_C_STANDARD 99) # C99 # lvgl officially support C99 and above
 set(CMAKE_CXX_STANDARD 17) # C17
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 if(WIN32)
-cmake_policy(SET CMP0167 NEW)
+    cmake_policy(SET CMP0167 NEW)
 endif()
 
 # Set the output path for the library
@@ -22,7 +23,11 @@ endif()
 find_package(Boost REQUIRED COMPONENTS filesystem system thread)
 include_directories(${Boost_INCLUDE_DIRS})
 
-FILE(GLOB_RECURSE PRJ_SRC CONFIGURE_DEPENDS "./src/*.cpp")
+# 查找 openssl 库
+find_package(OpenSSL REQUIRED)
+include_directories(${OPENSSL_INCLUDE_DIR})
+
+FILE(GLOB_RECURSE PRJ_SRC CONFIGURE_DEPENDS "./src/*.cpp" "./src/*.c")
 FILE(GLOB_RECURSE PRJ_INC CONFIGURE_DEPENDS "./include/*.h")
 
 add_library(${PROJECT_NAME} SHARED ${PRJ_SRC} ${PRJ_INC})
@@ -30,3 +35,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
 # 链接 Boost 库
 target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
+
+# 链接 openssl 库
+target_link_libraries(${PROJECT_NAME} ${OPENSSL_LIBRARIES})

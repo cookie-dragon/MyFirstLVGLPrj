@@ -56,6 +56,10 @@ endif()
 find_package(Boost REQUIRED COMPONENTS filesystem system thread)
 include_directories(${Boost_INCLUDE_DIRS})
 
+# 查找 openssl 库
+find_package(OpenSSL REQUIRED)
+include_directories(${OPENSSL_INCLUDE_DIR})
+
 if(WIN32)
     # Remove ARM-specific compile and linker options
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=native")
@@ -140,6 +144,9 @@ add_custom_target(run COMMAND ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME} DEPENDS 
 
 # 链接 Boost 库
 target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
+
+# 链接 openssl 库
+target_link_libraries(${PROJECT_NAME} ${OPENSSL_LIBRARIES})
 
 target_link_libraries(${PROJECT_NAME} cklhmiutils)
 target_link_libraries(${PROJECT_NAME} cklhmibsp)
