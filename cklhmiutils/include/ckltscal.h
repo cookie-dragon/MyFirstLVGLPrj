@@ -1,7 +1,7 @@
 /**
  * @file ckltscal.h
  * @author My Name (me@domain.com)
- * @brief
+ * @brief Powered by tslib (https://github.com/libts/tslib) LGPL-2.1 License
  * @date 2025-04-22
  *
  * @copyright Copyright (c) My Company 2025

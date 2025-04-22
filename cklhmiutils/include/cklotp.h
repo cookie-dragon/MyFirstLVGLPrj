@@ -1,7 +1,7 @@
 /**
  * @file cklotp.h
  * @author My Name (me@domain.com)
- * @brief Powered by c_otp (https://github.com/fmount/c_otp)
+ * @brief Powered by c_otp (https://github.com/fmount/c_otp) MIT License
  * @date 2025-04-22
  *
  * @copyright Copyright (c) My Company 2025

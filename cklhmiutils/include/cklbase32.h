@@ -1,7 +1,7 @@
 /**
  * @file cklbase32.h
  * @author My Name (me@domain.com)
- * @brief
+ * @brief Powered by libcotp (https://github.com/paolostivanin/libcotp) Apache License 2.0
  * @date 2025-04-22
  *
  * @copyright Copyright (c) My Company 2025
