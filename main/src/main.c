@@ -15,6 +15,7 @@
 #include "lvgl/demos/lv_demos.h"
 #else
 #include "cklhmibsp/include/cklhmibsp.h"
+#include "cklhmiutils/include/ckltscal.h"
 #include "ckldemos/include/activity/mainwindow/mainwindow.h"
 #include "cklguiguider/generated/gui_guider.h"
 #include "cklguiguider/generated/events_init.h"
@@ -147,6 +148,57 @@ int main(int argc, char **argv)
 
     // 销毁 CklHmiBsp 对象
     destroyCklHmiBsp(obj);
+#endif
+
+#if 0
+    int width = 800;
+    int height = 480;
+
+    calibration cal;
+
+    // cal.x[0] = CROSS_BOUND_DIST;
+    // cal.y[0] = CROSS_BOUND_DIST;
+    // cal.x[1] = width - CROSS_BOUND_DIST;
+    // cal.y[1] = CROSS_BOUND_DIST;
+    // cal.x[2] = width - CROSS_BOUND_DIST;
+    // cal.y[2] = height - CROSS_BOUND_DIST;
+    // cal.x[3] = CROSS_BOUND_DIST;
+    // cal.y[3] = height - CROSS_BOUND_DIST;
+    // cal.x[4] = width / 2;
+    // cal.y[4] = height / 2;
+
+    // cal.xfb[0] = CROSS_BOUND_DIST + 100;
+    // cal.yfb[0] = CROSS_BOUND_DIST + 95;
+    // cal.xfb[1] = width - CROSS_BOUND_DIST + 90;
+    // cal.yfb[1] = CROSS_BOUND_DIST + 85;
+    // cal.xfb[2] = width - CROSS_BOUND_DIST + 80;
+    // cal.yfb[2] = height - CROSS_BOUND_DIST + 75;
+    // cal.xfb[3] = CROSS_BOUND_DIST + 70;
+    // cal.yfb[3] = height - CROSS_BOUND_DIST + 65;
+    // cal.xfb[4] = width / 2 + 60;
+    // cal.yfb[4] = height / 2 + 55;
+
+    // perform_calibration(&cal);
+
+    cal.a[0] = 61702932.0;
+    cal.a[1] = -17136.0;
+    cal.a[2] = 0.0;
+    cal.a[3] = -16607856.0;
+    cal.a[4] = -188.0;
+    cal.a[5] = 15710.0;
+
+    cal.a[6] = 65536;
+    write_calibration(&cal, width, height, 0);
+
+    Point p1;
+    // p1.x = 400;
+    // p1.y = 240;
+    p1.x = 836;
+    p1.y = -197;
+
+    // Point p2 = convertToDeviceParams(&cal, p1);
+    Point p2 = convertToDisplayPoints(&cal, p1);
+
 #endif
 
     /**

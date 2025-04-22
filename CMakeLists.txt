@@ -79,6 +79,10 @@ elseif(WIN32)
     target_include_directories(lvgl PUBLIC ${PROJECT_SOURCE_DIR} ${SDL2_INCLUDE_DIRS})
 endif()
 
+# Add Utils subdirectory
+add_subdirectory(cklhmiutils)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/cklhmiutils/include)
+
 # Add BSP subdirectory
 add_subdirectory(cklhmibsp)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/cklhmibsp/include)
@@ -137,6 +141,7 @@ add_custom_target(run COMMAND ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME} DEPENDS 
 # 链接 Boost 库
 target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
 
+target_link_libraries(${PROJECT_NAME} cklhmiutils)
 target_link_libraries(${PROJECT_NAME} cklhmibsp)
 target_link_libraries(${PROJECT_NAME} ckldemos)
 target_link_libraries(${PROJECT_NAME} cklguiguider)
