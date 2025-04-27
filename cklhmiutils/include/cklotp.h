@@ -18,7 +18,9 @@
 #include <math.h>
 #include <time.h>
 
-#define TS 30 /* time step in seconds, default value */
+#define TOTP_T0 0
+#define TOTP_TS 30 /* time step in seconds, default value */
+#define TOTP_DIGITS 6
 
 #ifdef __cplusplus
 extern "C"
@@ -39,12 +41,12 @@ extern "C"
      *
      * TOTP = HOTP(k,T) where
      * K = the supersecret key
-     * T = ( Current Unix time - T0) / X
+     * T = ( Current Unix time - TOTP_T0) / X
      * where X is the Time Step
      *
      * *************************/
     uint32_t TOTP(uint8_t *key, size_t kl, uint64_t time, int digits);
-    time_t get_time(time_t T0);
+    time_t get_time(time_t t0);
 
     uint32_t get_totp_demo();
 

@@ -205,7 +205,7 @@ uint32_t HOTP(uint8_t *key, size_t kl, uint64_t interval, int digits)
 
 time_t get_time(time_t t0)
 {
-    return floor((time(NULL) - t0) / TS);
+    return floor((time(NULL) - t0) / TOTP_TS);
 }
 
 uint32_t TOTP(uint8_t *key, size_t kl, uint64_t time, int digits)
@@ -218,19 +218,16 @@ uint32_t TOTP(uint8_t *key, size_t kl, uint64_t time, int digits)
 
 uint32_t get_totp_demo()
 {
-#define T0 0
-#define DIGITS 6
-#define VALIDITY 30
-#define TIME 30
+
 // Maximum size for base32 secrets
 #define MAX_SECRET_LEN 64
 
     static char sec[MAX_SECRET_LEN];
 
-    char *pname = "Cooky.Long";
+    const char *pname = "Cooky.Long";
 
     cotp_error_t cotp_err;
-    char *psecret = base32_encode(pname, strlen(pname) + 1, &cotp_err); // b32_secretkey
+    char *psecret = base32_encode((const uint8_t *)pname, strlen(pname) + 1, &cotp_err); // b32_secretkey
 
     size_t pos, len, kl;
     uint8_t *key;
@@ -254,8 +251,8 @@ uint32_t get_totp_demo()
     key = (uint8_t *)&sec;
     kl = decode_b32key(&key, len);
 
-    time_t t = floor((time(NULL) - T0) / VALIDITY);
-    uint32_t totp = HOTP(key, kl, t, DIGITS);
+    time_t t = floor((time(NULL) - TOTP_T0) / TOTP_TS);
+    uint32_t totp = HOTP(key, kl, t, TOTP_DIGITS);
 
     return totp;
 }
