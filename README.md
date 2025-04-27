@@ -31,6 +31,9 @@ pacman -S mingw64/mingw-w64-x86_64-make
 pacman -S mingw64/mingw-w64-x86_64-boost
 pacman -S mingw64/mingw-w64-x86_64-SDL2
 
+# 单元测试库
+pacman -S mingw64/mingw-w64-x86_64-gtest
+
 # 其它库
 pacman -S mingw64/mingw-w64-x86_64-poppler
 pacman -S mingw64/mingw-w64-x86_64-qrencode

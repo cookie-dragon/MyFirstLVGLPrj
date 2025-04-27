@@ -27,6 +27,12 @@ include_directories(${Boost_INCLUDE_DIRS})
 find_package(OpenSSL REQUIRED)
 include_directories(${OPENSSL_INCLUDE_DIR})
 
+# 查找 Google Test 包
+if(WIN32)
+    find_package(GTest REQUIRED)
+    include_directories(${GTest_INCLUDE_DIRS})
+endif()
+
 FILE(GLOB_RECURSE PRJ_SRC CONFIGURE_DEPENDS "./src/*.cpp" "./src/*.c")
 FILE(GLOB_RECURSE PRJ_INC CONFIGURE_DEPENDS "./include/*.h")
 
@@ -38,3 +44,14 @@ target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
 
 # 链接 openssl 库
 target_link_libraries(${PROJECT_NAME} ${OPENSSL_LIBRARIES})
+
+# 添加测试可执行文件、链接 Google Test 库
+if(WIN32)
+    add_executable(${PROJECT_NAME}Tests test/libcklhmiutilstest.cpp ${PRJ_SRC} ${PRJ_INC})
+    target_include_directories(${PROJECT_NAME}Tests PUBLIC ${PROJECT_SOURCE_DIR}/include)
+
+    target_link_libraries(${PROJECT_NAME}Tests ${Boost_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME}Tests ${OPENSSL_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME}Tests ${PROJECT_NAME} )
+    target_link_libraries(${PROJECT_NAME}Tests GTest::gtest_main pthread)
+endif()
