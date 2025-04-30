@@ -8,6 +8,10 @@ CklView::CklView(ViewModel_Ckl *p_vm, lv_obj_t *p_lv_parent) : View_Ckl(p_vm)
     {
         m_lv_parent = lv_scr_act();
     }
+
+    // 强制立即更新布局
+    lv_obj_update_layout(m_lv_parent);
+
     m_container = lv_obj_create(m_lv_parent);
     
     lv_obj_set_pos(m_container, 0, 0);
